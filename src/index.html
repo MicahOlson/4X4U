@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <title>4X4U</title>
+</head>
+<body>
+  <div id="header">
+    <h1>4X4U</h1>
+    <h3>a Currency Arbitrageur</h3>
+  </div>
+  <div class="container">
+    <div id="nav">
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Explore</a>
+          <ul class="nav justify-content-center">
+            <li class="nav-item"><a href="#wiki">What IS Arbitrage?</a></li>
+            <li class="nav-item"><a href="#arbCheck">Check for Arbitrage!</a></li>
+            <li class="nav-item"><a href="#convertCurr">Currency Converter</a></li>
+            <li class="nav-item"><a href="#aboutUS">About Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <hr>
+    <div id="wiki">
+      <div id="arbContent">
+        <p>ARBITRAGE IS THIS. Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum Lorem ipsum ad naseum </p>
+      </div>
+      <button id="runDemo">See a demo of an arbitrage opportunity!</button>
+      <div id="demoOutput"></div>
+    </div>
+    <hr>
+    <div id="arbCheck">
+      <label for="arbBaseCurr">Please pick a currency to check for arbitrage opportunites:</label>
+      <select class="form-select" name="arbBaseCurr" id="arbBaseCurr">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="JPY">JPY</option>
+        <option value="GBP">GBP</option>
+        <option value="AUD">AUD</option>
+        <option value="CAD">CAD</option>
+        <option value="CHF">CHF</option>
+        <option value="CNY">CNY</option>
+        <option value="SEK">SEK</option>
+        <option value="NZD">NZD</option>
+      </select>
+      <input type="number" id="arbCurrAmt">
+      <br>
+      <button id="arbRunCalc">Look for arbitrage!</button>
+      <div id="arbOutput"></div>
+    </div>
+    <hr>
+    <div id="convertCurr">
+      <div id="currencyList">
+      </div>
+      <label for="convertCurrBase">Please enter a currency to convert FROM:</label>
+      <input type="text" id="convertCurrBase">
+      <br>
+      <label for="converCurrTarget">Please enter a currency to convert TO:</label>
+      <input type="text" id="convertCurrTarget">
+      <br>
+      <label for="convertCurrAmt">Enter an amount:</label>
+      <input type="number" id="convertCurrAmt">
+      <br>
+      <button id="convertRunCalc">Convert your cash!</button>
+      <div id="convertOutput"></div>
+    </div>
+    <br>
+    <div id="aboutUs">
+      <h6>About Team Bling:</h6>
+      <p>Jo</p>
+      <p>Jon</p>
+      <p>Micah</p>
+      <p>Olha</p>
+      <p>Scott</p>
+    </div>
+    <div id="footer">
+
+    </div>
+  </div>
+</body>
+</html>
