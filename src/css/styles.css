@@ -1,0 +1,25 @@
+body {
+  margin-bottom: 6000px;
+  color:aliceblue;
+  background-color: black;
+}
+
+#nav {
+  background-color: #ffffff;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+}
+
+.navbar {
+  color:aliceblue;
+}
+
+#header {
+  text-align : center;
+}
+
+.nav-item {
+  padding-left: 10px;
+  padding-right: 10px;
+}
