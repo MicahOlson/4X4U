@@ -25,4 +25,4 @@ $(document).ready(function() {
   });
   // findArbitrage(userSelection, exchanges);
 });
-//console.log(response);
+
