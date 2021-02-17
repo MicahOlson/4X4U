@@ -16,6 +16,7 @@ body {
 .navbar {
   color:aliceblue;
   background-color: #2A9D8F;
+  border: white inset 4px;
 }
 
 .navbar-brand {
@@ -34,14 +35,26 @@ body {
 
 .nav-item a {
   color: #F4A261;
-  }
+}
 
-  #arbCheck, #convertCurr {
+#arbCheck, #convertCurr {
   text-align: center;
-  }
+}
 
-#wiki, #arbCheck, #convertCurr, #aboutUs {
-margin-top: 60px;
+#wiki,
+#arbCheck,
+#convertCurr,
+#aboutUs {
+  margin-top: 60px;
+}
+
+#runDemo {
+  margin: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+  border: aliceblue 3px !important;
 }
 
 .card {

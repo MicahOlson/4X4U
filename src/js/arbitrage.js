@@ -1,48 +1,54 @@
 import Arbitrage from '../services/standard-exchange-api.js';
 
-const topTen = [
+// Top ten currencies traded on forex market
+const currencies = [
   'USD', 'EUR', 'JPY', 'GBP', 'AUD', 
   'CAD', 'CHF', 'CNY', 'SEK', 'NZD'
 ];
-let exchangeRates = {};
-
-function addExchangeRate(base, baseRates) {
-  exchangeRates[base] = baseRates.conversion_rates;
-  delete exchangeRates[base][base];
-}
-
-export function manipulateRates() {
-  let i = 0;
-  while (i < 2) {
-    const random1 = Math.floor(Math.random() * topTen.length);
-    const random2 = Math.floor(Math.random() * topTen.length);
-    if (random1 != random2) {
-      exchangeRates[topTen[random1]][topTen[random2]] += .1;
-      i++;
-    }
-  }
-}
+// All available currencies
+// const currencies = [
+//   'AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 
+//   'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 
+//   'BSD', 'BTN', 'BWP', 'BYN', 'BZD', 'CAD', 'CDF', 'CHF', 'CLP', 'CNY', 
+//   'COP', 'CRC', 'CUC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 
+//   'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'FOK', 'GBP', 'GEL', 'GGP', 
+//   'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 
+//   'HUF', 'IDR', 'ILS', 'IMP', 'INR', 'IQD', 'IRR', 'ISK', 'JMD', 'JOD', 
+//   'JPY', 'KES', 'KGS', 'KHR', 'KID', 'KMF', 'KRW', 'KWD', 'KYD', 'KZT', 
+//   'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 
+//   'MMK', 'MNT', 'MOP', 'MRU', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZN', 
+//   'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 
+//   'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 
+//   'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'SSP', 
+//   'STN', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 
+//   'TVD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VES', 'VND', 
+//   'VUV', 'WST', 'XAF', 'XCD', 'XDR', 'XOF', 'XPF', 'YER', 'ZAR', 'ZMW'
+// ];
 
 export function getExchangeRates() { 
-  topTen.forEach(function(base) {
+  let rates = {};
+  currencies.forEach(function(base) {
     if (!sessionStorage[base]) {
       let promise = Arbitrage.getArbitrage(base);
       promise.then(function(response) {
         const baseRates = JSON.parse(response);
         sessionStorage.setItem(base, JSON.stringify(baseRates));
-        addExchangeRate(base, baseRates);
+        rates[base] = baseRates.conversion_rates;
+        delete rates[base][base];
       }, function (error) {
         console.log(`API CALL ERROR -> ${error}`);
       });
     } else {
       let baseRates = sessionStorage.getItem(base);
       baseRates = JSON.parse(baseRates);
-      addExchangeRate(base, baseRates);
+      rates[base] = baseRates.conversion_rates;
+      delete rates[base][base];
     }
   });
+  return rates;
 }
 
-export function findArbitrage(baseCurrency) {
+export function findArbitrage(baseCurrency, exchangeRates) {
   let firstExchange = {};
   for (const base in exchangeRates) {
     for (const firstTarget in exchangeRates[base]) {
