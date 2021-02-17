@@ -3,8 +3,10 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import Conversion from './services/pair-exchange-api.js';
+import { selectCurrencies } from './js/currency-list.js';
 import { findArbitrage , getExchangeRates } from './js/arbitrage.js';
 import { demoRates } from './js/demo-rates.js';
+
 
 $(document).ready(function() {
   // Arbitrage
@@ -36,12 +38,27 @@ $(document).ready(function() {
   });
 
   // Conversion calculator
+  function populateDropdown() {
+    for(const key in selectCurrencies()) {
+      $("#convertCurrBase").append(`<option value="${key}">${key} - ${selectCurrencies()[key][0]}</option>`);
+      $("#convertCurrTarget").append(`<option value="${key}">${key} - ${selectCurrencies()[key][0]}</option>`);
+    }
+  }
+  function clearFields() {
+    $("#convertCurrBase").val("");
+    $("#convertCurrTarget").val("");
+    $("#convertCurrAmt").val("");
+  }
+  
+
+  populateDropdown();
+
   $('#convertRunCalc').click(function(event) {
     event.preventDefault();
     const fromCurrency = $('#convertCurrBase').val();
     const toCurrency = $('#convertCurrTarget').val();
     const amount = parseInt($("#convertCurrAmt").val());
-    
+    clearFields();
     let promise = Conversion.getConversion(fromCurrency, toCurrency);
     promise.then(function(response) {
       const body = JSON.parse(response);
@@ -49,7 +66,7 @@ $(document).ready(function() {
         const symbol = '&#x' + body.target_data.display_symbol.split(',').join(';&#x') + ';';
         $('#convertOutput').html(`Your total amount is ` + symbol + ` ${(amount * body.conversion_rate).toFixed(2)} converting from ${fromCurrency} to ${toCurrency}`);
       }}, function(error) {
-      console.log(`API CALL ERROR -> ${error}`);
+      $("#error").append(`<p>Sorry! ${error['error-type']}</p>`);
     });
   });
 });
