@@ -1,7 +1,7 @@
 body {
   margin-bottom: 6000px;
   color:aliceblue;
-  background-color: black;
+  background-color: #264653;
 }
 
 #nav {
@@ -10,17 +10,62 @@ body {
 	position: sticky;
 	top: 0;
   z-index: 1;
+  margin-bottom: 60px;
 }
 
 .navbar {
   color:aliceblue;
+  background-color: #2A9D8F;
+}
+
+.navbar-brand {
+  color: #E76F51;
 }
 
 #header {
   text-align : center;
+  font-size: xx-large;
 }
 
 .nav-item {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.nav-item a {
+  color: #F4A261;
+  }
+
+  #arbCheck, #convertCurr {
+  text-align: center;
+  }
+
+#wiki, #arbCheck, #convertCurr, #aboutUs {
+margin-top: 60px;
+}
+
+.card {
+  height: fit-content;
+  word-wrap: break-word;
+  width: fixed;
+  vertical-align:middle;
+  background-color: #2A9D8F;
+  border-radius: 1em;
+}
+
+.card-body {
+  justify-content: center;
+  align-content: center;
+  font-size: x-large;
+  height: fit-content;
+  word-wrap: break-word;
+  width: fixed;
+  vertical-align:middle;
+}
+
+.card-title {
+  background-color: #2A9D8F;
+}
+.card-title h3 {
+  font-size: large;
 }
