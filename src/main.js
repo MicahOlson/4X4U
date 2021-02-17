@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import Conversion from './services/pair-exchange-api.js';
 import { findArbitrage , getExchangeRates, manipulateRates } from './js/arbitrage.js';
+import { selectCurrencies } from './js/currency-list.js';
 
 $(document).ready(function() {
   // Arbitrage
@@ -25,6 +26,16 @@ $(document).ready(function() {
   });
 
   // Conversion calculator
+  function populateDropdown() {
+    for(const key in selectCurrencies()) {
+      $("#convertCurrBase").append(`<option value="${key}">${key} - ${selectCurrencies()[key][0]}</option>`);
+      $("#convertCurrTarget").append(`<option value="${key}">${key} - ${selectCurrencies()[key][0]}</option>`);
+    }
+  }
+  populateDropdown();
+ 
+
+
   $('#convertRunCalc').click(function(event) {
     event.preventDefault();
     const fromCurrency = $('#convertCurrBase').val();
