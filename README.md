@@ -24,7 +24,18 @@
 * ExchangeRate-API
 
 ## Description
-\[Description to come\].  
+This is a website that will check the Exchange API to see if there is a possibility to make a profit from a arbitrage on selling and buying currencies. Arbitrage is not very common so it also will do currency conversions as well. We have also included a demo button to show what the arbitrage trades and results will look like if there is an opportunity.
+
+## Specs
+Initial Specs:
+| Behavior | Input | Output |
+| ------------- |:-------------:| -----:|
+| Click "See a demo of arbitrage opportunity!" button | button click | USD > AED > JPY > USD 1.25 |
+| Choose starting currency and enter amount for arbitrage | USD , 1 | USD > AED > JPY > USD 1.25 OR Sorry, there is not an opportunity for arbitrage |
+| Allow user to select and convert a currency | AED , JPY , 2 | Your total amount is ¥ 57.69 converting from AED to JPY |
+| Receive error if API returns one | Error | You have received an error: Invalid API Key |
+| Receive message if currency doesn't exist | KPW |  |
+
 
 ## Setup and Installation
 * To use this application, you will need to **acquire your own API key** for the ExchangeRate-API.
@@ -92,4 +103,5 @@ Copyright &copy; 2021
     Jon Stump  
 
 ## Contact Information
-Micah Olson micah.olson@protonmail.com  
+Micah Olson micah.olson@protonmail.com
+Jon Stump jmstump@gmail.com  

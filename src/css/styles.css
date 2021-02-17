@@ -25,7 +25,8 @@ body {
 
 #header {
   text-align : center;
-  font-size: xx-large;
+  font-weight: bolder;
+  margin-bottom: 30px;
 }
 
 .nav-item {
