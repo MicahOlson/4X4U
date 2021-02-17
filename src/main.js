@@ -32,24 +32,29 @@ $(document).ready(function() {
       $("#convertCurrTarget").append(`<option value="${key}">${key} - ${selectCurrencies()[key][0]}</option>`);
     }
   }
-  populateDropdown();
- 
+  function clearFields() {
+    $("#convertCurrBase").val("");
+    $("#convertCurrTarget").val("");
+    $("#convertCurrAmt").val("");
+  }
+  
 
+  populateDropdown();
 
   $('#convertRunCalc').click(function(event) {
     event.preventDefault();
     const fromCurrency = $('#convertCurrBase').val();
     const toCurrency = $('#convertCurrTarget').val();
     const amount = parseInt($("#convertCurrAmt").val());
-    
+    clearFields();
     let promise = Conversion.getConversion(fromCurrency, toCurrency);
     promise.then(function(response) {
       const body = JSON.parse(response);
       if (body.result === "success") {
-        const symbol = '&#x' + body.target_data.display_symbol.split(',').join(';&#x') + ';'
+        const symbol = '&#x' + body.target_data.display_symbol.split(',').join(';&#x') + ';';
         $('#convertOutput').html(`Your total amount is ` + symbol + ` ${(amount * body.conversion_rate).toFixed(2)} converting from ${fromCurrency} to ${toCurrency}`);
       }}, function(error) {
-      console.log(`API CALL ERROR -> ${error}`);
+      $("#error").append(`<p>Sorry! ${error['error-type']}</p>`);
     });
   });
 });
