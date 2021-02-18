@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import Conversion from './services/pair-exchange-api.js';
 import { selectCurrencies } from './js/currency-list.js';
-import { findArbitrage , getExchangeRates } from './js/arbitrage.js';
+import { findArbitrage, getExchangeRates } from './js/arbitrage.js';
 import { demoRates } from './js/demo-rates.js';
 
 $(document).ready(function() {
@@ -18,40 +18,61 @@ $(document).ready(function() {
 
   // Arbitrage
   $('#arbRunCalc').click(function(event) {
-    let userCurrency = $('arbBaseCurr').val();
     event.preventDefault();
-    // let userAmount = 15 // amount value from user;
+    let userCurrency = $('arbBaseCurr').val();
+    let userAmount = $('arbCurrAmt').val();
     let arbitrageResults = findArbitrage(userCurrency, getExchangeRates());
-    if (arbitrageResults.length > 0) { 
-      console.log(`BLING!`);
-      arbitrageResults.forEach(function(result) {
-        console.log(result);
-      });
+    if (arbitrageResults.length > 0) {
+      const randomResult = arbitrageResults[Math.floor(Math.random() * arbitrageResults.length)];
+      const splitResult = randomResult.split('->');
+      // const curr1Name = splitResult[1];
+      const curr1Val = (parseFloat(splitResult[0]) * userAmount).toFixed(2);
+      const curr2Name = splitResult[3];
+      const curr2Val = (parseFloat(splitResult[2]) * userAmount).toFixed(2);
+      const curr3Name = splitResult[5];
+      const curr3Val = (parseFloat(splitResult[4]) * userAmount).toFixed(2);
+      const curr4Val = (parseFloat(splitResult[6]) * userAmount).toFixed(2);
+      $('#currOne').text(curr1Val);
+      $('#currNameTwo').text(curr2Name);
+      $('#currTwo').text(curr2Val);
+      $('#currNameThree').text(curr3Name);
+      $('#currThree').text(curr3Val);
+      $('#currFour').text(curr4Val);
     } else {
-      console.log(`Sorry, no arbitrage opportunities found today.`);
-      errorCheck();
+      $('#arbOutput').text(`Sorry, no arbitrage opportunities found today.`);
     }
   });
 
   $('#runDemo').click(function(event) {
     event.preventDefault();
-    let userCurrency = "USD";
-    let arbitrageResults = findArbitrage(userCurrency, demoRates);
-    if (arbitrageResults.length > 0) { 
-      console.log(`BLING!`);
-      arbitrageResults.forEach(function(result) {
-        console.log(result);
-      });
-    }
+    const userCurrency = "USD";
+    const arbitrageResults = findArbitrage(userCurrency, demoRates);
+    const randomResult = arbitrageResults[Math.floor(Math.random() * arbitrageResults.length)];
+    const splitResult = randomResult.split('->');
+    // const curr1Name = splitResult[1];
+    const curr1Val = (parseFloat(splitResult[0]) * 1000).toFixed(2);
+    const curr2Name = splitResult[3];
+    const curr2Val = (parseFloat(splitResult[2]) * 1000).toFixed(2);
+    const curr3Name = splitResult[5];
+    const curr3Val = (parseFloat(splitResult[4]) * 1000).toFixed(2);
+    const curr4Val = (parseFloat(splitResult[6]) * 1000).toFixed(2);
+    $('#currOne').text(curr1Val);
+    $('#currNameTwo').text(curr2Name);
+    $('#currTwo').text(curr2Val);
+    $('#currNameThree').text(curr3Name);
+    $('#currThree').text(curr3Val);
+    $('#currFour').text(curr4Val);
+    $('#demoOutput').html('<img style="height:100%" id="moneymoneymoney" src="https://64.media.tumblr.com/763175ae4f21757ec3f9a5f61047101b/tumblr_opkdjuZbAj1tkodheo5_400.gif" />')
   });
 
   // Conversion calculator
   function populateDropdown() {
-    for(const key in selectCurrencies()) {
+    for (const key in selectCurrencies()) {
       $("#convertCurrBase").append(`<option value="${key}">${key} - ${selectCurrencies()[key][0]}</option>`);
       $("#convertCurrTarget").append(`<option value="${key}">${key} - ${selectCurrencies()[key][0]}</option>`);
     }
   }
+
   function clearFields() {
     $("#convertCurrBase").val("");
     $("#convertCurrTarget").val("");

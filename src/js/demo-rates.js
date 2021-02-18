@@ -46,7 +46,7 @@ export const demoRates = {
   'AUD': {
     "CAD": 0.9845,
     "CHF": 0.6911,
-    "CNY": 4.9998,
+    "CNY": 5.0998, // 4.9998
     "EUR": 0.6395,
     "GBP": 0.5607,
     "JPY": 81.3504,
@@ -88,7 +88,7 @@ export const demoRates = {
     "USD": 0.1551
   },
   'SEK': {
-    "AUD": 0.1551,
+    "AUD": 0.2551, // 0.1551
     "CAD": 0.1527,
     "CHF": 0.1072,
     "CNY": 0.7750,

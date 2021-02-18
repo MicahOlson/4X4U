@@ -2,7 +2,7 @@ import Arbitrage from '../services/standard-exchange-api.js';
 
 // Top ten currencies traded on forex market
 const currencies = [
-  'USD', 'EUR', 'JPY', 'GBP', 'AUD', 
+  'USD', 'EUR', 'JPY', 'GBP', 'AUD',
   'CAD', 'CHF', 'CNY', 'SEK', 'NZD'
 ];
 // All available currencies
@@ -25,7 +25,7 @@ const currencies = [
 //   'VUV', 'WST', 'XAF', 'XCD', 'XDR', 'XOF', 'XPF', 'YER', 'ZAR', 'ZMW'
 // ];
 
-export function getExchangeRates() { 
+export function getExchangeRates() {
   let rates = {};
   currencies.forEach(function(base) {
     if (!sessionStorage[base]) {
@@ -35,7 +35,7 @@ export function getExchangeRates() {
         sessionStorage.setItem(base, JSON.stringify(baseRates));
         rates[base] = baseRates.conversion_rates;
         delete rates[base][base];
-      }, function (error) {
+      }, function(error) {
         console.log(`API CALL ERROR -> ${error}`);
       });
     } else {
@@ -52,23 +52,23 @@ export function findArbitrage(baseCurrency, exchangeRates) {
   let firstExchange = {};
   for (const base in exchangeRates) {
     for (const firstTarget in exchangeRates[base]) {
-      firstExchange[`${base}->${firstTarget}`] = exchangeRates[base][firstTarget];
+      firstExchange[`1->${base}->${exchangeRates[base][firstTarget]}->${firstTarget}`] = exchangeRates[base][firstTarget];
     }
   }
 
   let secondExchange = {};
   for (const key in firstExchange) {
     const exchanges = key.split('->');
-    for (const secondTarget in exchangeRates[exchanges[1]]) {
-      secondExchange[`${key}->${secondTarget}`] = firstExchange[key] * exchangeRates[exchanges[1]][secondTarget];
+    for (const secondTarget in exchangeRates[exchanges[3]]) {
+      secondExchange[`${key}->${firstExchange[key] * exchangeRates[exchanges[3]][secondTarget]}->${secondTarget}`] = firstExchange[key] * exchangeRates[exchanges[3]][secondTarget];
     }
   }
 
   let thirdExchange = {};
   for (const key in secondExchange) {
     const exchanges = key.split('->');
-    for (const thirdTarget in exchangeRates[exchanges[2]]) {
-      thirdExchange[`${key}->${thirdTarget}`] = secondExchange[key] * exchangeRates[exchanges[2]][thirdTarget];
+    for (const thirdTarget in exchangeRates[exchanges[5]]) {
+      thirdExchange[`${key}->${secondExchange[key] * exchangeRates[exchanges[5]][thirdTarget]}->${thirdTarget}`] = secondExchange[key] * exchangeRates[exchanges[5]][thirdTarget];
     }
   }
 
@@ -76,17 +76,17 @@ export function findArbitrage(baseCurrency, exchangeRates) {
   let cycles = {};
   for (const cycle in thirdExchange) {
     const exchanges = cycle.split('->');
-    if (exchanges[0] === baseCurr && exchanges[3] === baseCurr) {
+    if (exchanges[1] === baseCurr && exchanges[7] === baseCurr) {
       cycles[cycle] = thirdExchange[cycle];
     }
   }
-  
+
   let arbitrageResults = [];
   for (const cycle in cycles) {
     if (cycles[cycle] > 1.01) {
       arbitrageResults.push(`${cycle}: ${cycles[cycle]}`);
     }
   }
-  
+
   return arbitrageResults; // returns an array of arbitrage opportunities
 }
