@@ -22,6 +22,7 @@ input, select {
 button {
   background-color: #264653 !important;
   color: rgb(255, 238, 0) !important;
+  margin-top: 20px;
 }
 
 .aboutPics {
@@ -98,9 +99,8 @@ button {
 #wiki,
 #arbCheck,
 #convertCurr,
-#aboutUs,
-#arbRunCalc {
-  margin-top: 60px;
+#aboutUs {
+  padding-top: 100px;
 }
 
 #runDemo {
@@ -109,7 +109,7 @@ button {
   margin-left: auto;
   margin-right: auto;
   width: 20%;
-  border: aliceblue 3px !important;
+  /* border: aliceblue 3px !important; */
 }
 
 #demoOutput {
@@ -157,4 +157,8 @@ justify-content: center;
   position: fixed;
   bottom: 0;
   left: 0;
+}
+
+#arbOutput, #convertOutput, #error {
+  margin-top: 30px;
 }

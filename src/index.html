@@ -15,7 +15,7 @@
     <div id="nav">
       <nav class="navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Explore</a>
+          <a class="navbar-brand" href="#">Back to Top</a>
           <ul class="nav justify-content-center">
             <li class="nav-item"><a href="#wiki">What IS Arbitrage?</a></li>
             <li class="nav-item"><a href="#arbCheck">Check for Arbitrage!</a></li>
@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-      <button id="runDemo" class="btn btn-success btn-lg btn-block border border-dark">See a demo of an arbitrage opportunity!</button>
+      <button id="runDemo" class="btn btn-success btn-lg btn-block">See a demo of an arbitrage opportunity!</button>
       <div id="demoOutput"></div>
     </div>
     <hr>
@@ -104,6 +104,7 @@
           <input type="number" id="arbCurrAmt" placeholder="Default $1">
           <br>
           <button id="arbRunCalc" class="btn btn-success">Look for arbitrage!</button>
+          <br>
           <div id="arbOutput"></div>
         </div>
       </div>
@@ -127,8 +128,7 @@
             <br>
             <input type="number" id="convertCurrAmt" step=".01" min=".01" required>
             <br>
-            <br>
-            <button id="convertRunCalc">Convert your cash!</button>
+            <button id="convertRunCalc" class="btn btn-success">Convert your cash!</button>
             <div id="convertOutput"><span id="error"></span></div>
           </form>  
         </div>
