@@ -34,6 +34,7 @@ button {
   justify-content: center;
 }
 
+
 .aboutPics {
   height: 175px;
   border-radius: 150px;
@@ -44,6 +45,7 @@ button {
 }
 
 #aboutUs {
+  margin: 20%;
   padding-top: 100px;
   text-align: center;
 }
@@ -109,7 +111,7 @@ button {
 #aboutUs,
 #arbCheck,
 #convertCurr {
-  padding: 20px;
+  padding: 60px;
   background-color: rgb(65, 153, 144);
   border: 2px double #264653;
   border-radius: 25px;
@@ -123,7 +125,7 @@ button {
 #arbCheck,
 #convertCurr,
 #aboutUs {
-  padding-top: 100px;
+  /* padding-top: 100px; */
 }
 
 #runDemo {
