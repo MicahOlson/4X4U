@@ -90,7 +90,7 @@
             <option value="SEK">SEK</option>
             <option value="NZD">NZD</option>
           </select>
-          <input type="number" id="arbCurrAmt">
+          <input type="number" id="arbCurrAmt" placeholder="Default $1">
           <br>
           <button id="arbRunCalc" class="btn btn-success">Look for arbitrage!</button>
           <div id="arbOutput"></div>
@@ -98,25 +98,27 @@
       </div>
       <hr><div class="col-sm">
         <div id="convertCurr">
-          <div id="currencyList">
-          </div>
-          <label for="convertCurrBase">Please select a currency to convert FROM:</label>
-          <select id="convertCurrBase" name="convertCurrBase">
-            <option>- Select currency -</option>
-          </select>
-          <br>
-          <label for="convertCurrTarget">Please select a currency to convert TO:</label>
-          <select id="convertCurrTarget" name="convertCurrTarget">
-            <option>- Select currency -</option>
-          </select>
-          <br>
-          <label for="convertCurrAmt">Enter an amount:</label>
-          <br>
-          <input type="number" id="convertCurrAmt">
-          <br>
-          <br>
-          <button id="convertRunCalc">Convert your cash!</button>
-          <div id="convertOutput"><span id="error"></span></div>
+          <form id="convert-form">
+            <div id="currencyList">
+            </div>
+            <label for="convertCurrBase">Please select a currency to convert FROM:</label>
+            <select id="convertCurrBase" name="convertCurrBase" required>
+              <option selected disabled value="">- Select currency -</option>
+            </select>
+            <br>
+            <label for="convertCurrTarget">Please select a currency to convert TO:</label>
+            <select id="convertCurrTarget" name="convertCurrTarget" required>
+              <option selected disabled value="">- Select currency -</option>
+            </select>
+            <br>
+            <label for="convertCurrAmt">Enter an amount:</label>
+            <br>
+            <input type="number" id="convertCurrAmt" step=".01" min=".01" required>
+            <br>
+            <br>
+            <button id="convertRunCalc">Convert your cash!</button>
+            <div id="convertOutput"><span id="error"></span></div>
+          </form>  
         </div>
       </div>
     </div>
