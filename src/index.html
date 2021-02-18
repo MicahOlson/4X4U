@@ -88,8 +88,9 @@
     <div class="row">
       <div class="col-sm">
         <div id="arbCheck">
+          <h2>Check for Arbitrage</h2>
           <label for="arbBaseCurr">Please pick a currency to check for arbitrage opportunities:</label>
-          <select class="form-select" name="arbBaseCurr" id="arbBaseCurr">
+          <select class="form-select col-md-3" name="arbBaseCurr" id="arbBaseCurr">
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
             <option value="JPY">JPY</option>
@@ -102,15 +103,14 @@
             <option value="NZD">NZD</option>
           </select>
           <input type="number" id="arbCurrAmt" placeholder="Default $1">
-          <br>
           <button id="arbRunCalc" class="btn btn-success">Look for arbitrage!</button>
-          <br>
           <div id="arbOutput"></div>
         </div>
       </div>
       <hr>
       <div class="col-sm">
         <div id="convertCurr">
+          <h2>Currency Convertor</h2>
           <form id="convert-form">
             <div id="currencyList">
             </div>
@@ -118,23 +118,18 @@
             <select id="convertCurrBase" name="convertCurrBase" required>
               <option selected disabled value="">- Select currency -</option>
             </select>
-            <br>
             <label for="convertCurrTarget">Please select a currency to convert TO:</label>
             <select id="convertCurrTarget" name="convertCurrTarget" required>
               <option selected disabled value="">- Select currency -</option>
             </select>
-            <br>
             <label for="convertCurrAmt">Enter an amount:</label>
-            <br>
             <input type="number" id="convertCurrAmt" step=".01" min=".01" required>
-            <br>
             <button id="convertRunCalc" class="btn btn-success">Convert your cash!</button>
             <div id="convertOutput"><span id="error"></span></div>
-          </form>  
+          </form>
         </div>
       </div>
     </div>
-    <br>
     <div id="aboutUs">
       <h6>About Team Bling:</h6>
       <div class="row" id="aboutSection">

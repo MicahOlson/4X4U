@@ -94,7 +94,7 @@ $(document).ready(function() {
       const body = JSON.parse(response);
       if (body.result === "success") {
         const symbol = '&#x' + body.target_data.display_symbol.split(',').join(';&#x') + ';';
-        $('#convertOutput').html(`Your total amount is ` + symbol + ` ${(amount * body.conversion_rate).toFixed(2)} converting from ${fromCurrency} to ${toCurrency}`);
+        $('#convertOutput').html(`Your total amount is ` + symbol + ` ${(amount * body.conversion_rate).toFixed(2)} converting from ${fromCurrency} to ${toCurrency}`).slideDown();
       } else {
         errorCheck(response);
       }
