@@ -10,6 +10,9 @@
     Micah Olson  
     Jon Stump
 
+
+![Homepage](src/images/screenshot.png)
+
 ## Technologies Used
 * HTML
 * CSS
@@ -24,9 +27,14 @@
 * ExchangeRate-API
 
 ## Description
-This is a website that will check the Exchange API to see if there is a possibility to make a profit from a arbitrage on selling and buying currencies. Arbitrage is not very common so it also will do currency conversions as well. We have also included a demo button to show what the arbitrage trades and results will look like if there is an opportunity.
+Using this application, a user can check for Arbitrage opportunities by selecting the base currency (from a list of top ten world currencies), and choosing an amount. They will then be shown whether or not an opportunity for Arbitrage exists for that currency at the time. If so, an affirmative message will be displayed. The user will also be able to use the currency exchange converter to enter an amount in any world currency, and then convert it into any other world currency. To determine the most recent exchange rate, this application will make an API call to the following [exchange rate API](https://www.exchangerate-api.com/). The correct conversion information will then be displayed!
+
 
 ## Specs
+
+<details>
+  <summary>Expand Specs</summary>
+
 Initial Specs:
 | Behavior | Input | Output |
 | ------------- |:-------------:| -----:|
@@ -34,10 +42,13 @@ Initial Specs:
 | Choose starting currency and enter amount for arbitrage | USD , 1 | USD > AED > JPY > USD 1.25 OR Sorry, there is not an opportunity for arbitrage |
 | Allow user to select and convert a currency | AED , JPY , 2 | Your total amount is ¥ 57.69 converting from AED to JPY |
 | Receive error if API returns one | Error | You have received an error: Invalid API Key |
-| Receive message if currency doesn't exist | KPW |  |
+| Receive message if user try to submit empty form | blank fields |  Please select an item in the list |
+| Receive message if user input amount is less than 0 | -1 | Value must be greater than or equal to 0.01 |
 
+</details>
 
 ## Setup and Installation
+
 * To use this application, you will need to **acquire your own API key** for the ExchangeRate-API.
   - Go to the [ExchangeRate-API](https://www.exchangerate-api.com) website
   - Input your email address and click "Get Free Key!"
@@ -104,4 +115,8 @@ Copyright &copy; 2021
 
 ## Contact Information
 Micah Olson micah.olson@protonmail.com
-Jon Stump jmstump@gmail.com  
+Jon Stump jmstump@gmail.com 
+Maxwell Meyer maxreadswell@gmail.com 
+Jo Miller joannadawnmiller@gmail.com
+Scott O'Neil scottieoneil@gmail.com
+Olha Hizhytska olgainfotech@gmail.com
