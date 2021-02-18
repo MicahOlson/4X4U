@@ -1,20 +1,38 @@
 body {
-  margin-bottom: 6000px;
-  color:aliceblue;
+  margin-top: 50px;
+  margin-bottom: 600px;
+  color: aliceblue;
   background-color: #264653;
+}
+
+button {
+  color: rgb(255, 238, 0) !important;
+}
+
+.aboutPics {
+  height: 175px;
+  border-radius: 150px;
+  border: 3px solid #E5E5E5;
+  filter: drop-shadow(-3px 4px #F4A261);
+  margin: 25px;
+  margin-bottom: 30px;
+}
+
+#aboutUs {
+  text-align: center;
 }
 
 #nav {
   background-color: #ffffff;
-	position: -webkit-sticky;
-	position: sticky;
-	top: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   z-index: 1;
   margin-bottom: 60px;
 }
 
 .navbar {
-  color:aliceblue;
+  color: aliceblue;
   background-color: #2A9D8F;
   border: white inset 4px;
 }
@@ -24,7 +42,7 @@ body {
 }
 
 #header {
-  text-align : center;
+  text-align: center;
   font-weight: bolder;
   margin-bottom: 30px;
 }
@@ -38,14 +56,16 @@ body {
   color: #F4A261;
 }
 
-#arbCheck, #convertCurr {
+#arbCheck,
+#convertCurr {
   text-align: center;
 }
 
 #wiki,
 #arbCheck,
 #convertCurr,
-#aboutUs {
+#aboutUs,
+#arbRunCalc {
   margin-top: 60px;
 }
 
@@ -62,9 +82,11 @@ body {
   height: fit-content;
   word-wrap: break-word;
   width: fixed;
-  vertical-align:middle;
+  vertical-align: middle;
   background-color: #2A9D8F;
   border-radius: 1em;
+  margin: 2%;
+  color: #F4A261;
 }
 
 .card-body {
@@ -74,12 +96,25 @@ body {
   height: fit-content;
   word-wrap: break-word;
   width: fixed;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
 .card-title {
   background-color: #2A9D8F;
 }
+
 .card-title h3 {
   font-size: large;
+}
+
+#footer {
+  text-align: center;
+  font-size: large;
+  color: rgb(255, 255, 255);
+  height: 30px;
+  width: 100%;
+  background-color: #2A9D8F;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }

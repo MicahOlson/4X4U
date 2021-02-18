@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
   <title>4X4U</title>
 </head>
+
 <body>
   <div id="header">
     <h1>4X4U</h1>
@@ -27,54 +29,62 @@
       <div id="arbContent">
         <h4>What the <strong>heck</strong> is currency arbitrage?</h4>
 
-          <p>Webster's defines <em>"arbitrage"</em> as "the nearly simultaneous purchase and sale of securities or foreign exchange in different markets in order to profit from price discrepancies." Team Bling, however, defines a Webster's definition introduction as "trite and stale, at best; hack and disgusting, at worst."</p>
-          
-          <h5>So what, REALLY, is currency arbitrage?</h5>
-          
-          <p>Let's tell a tale of 4 brothers: Sean, Steven, Sam and Sue. Sean, the oldest, has been hoarding GI Joes since he was young. Steven, the 2nd oldest, has been doing the same with Barbies. Sam, one step above the baby, collects Transformers. The baby, Sue, is you!</p>
+        <p>Webster's defines <em>"arbitrage"</em> as "the nearly simultaneous purchase and sale of securities or foreign exchange in different markets in order to profit from price discrepancies." Team Bling, however, defines a Webster's definition introduction
+          as "trite and stale, at best; hack and disgusting, at worst."</p>
 
-          <p>Now let's say Sue (furthermore referred to as "You") has gotten his hands on a stash of Transformers. However, you want more (of course). Sean has been eyeing your Megatron; you, however, have been trying to get more. He has 2 less-desired Joes that you've got your eye on, and, joy of joys, he's willing to trade! You make the trade, 1 Transformer for 2 GI Joes. Then, Steven catching wind, offers you 3 of his Barbies for your dope Joes. You agree. Great! Finally, Sam, not wanting to be left out, gets in on the action and wants to trade you your Barbs for 2 of his Transformers. Do you agree? OF COURSE, you started the day trading 1 Transformer, only to end it with 2! This is how currency arbitrage works (in a hyper-simplified way).</p>
+        <h5>So what, REALLY, is currency arbitrage?</h5>
 
-          <p><em>Let's see it in action:</em></p>
+        <p>Let's tell a tale of 4 brothers: Sean, Steven, Sam and Sue. Sean, the oldest, has been hoarding GI Joes since he was young. Steven, the 2nd oldest, has been doing the same with Barbies. Sam, one step above the baby, collects Transformers. <em>The baby, Sue, is you!</em></p>
+
+        <p>Now let's say Sue (furthermore referred to as "You") has gotten his hands on a stash of Transformers. However, you want more (of course). Sean has been eyeing your Megatron; you, however, have been trying to get more. He has 2 less-desired Joes
+          that you've got your eye on, and, joy of joys, he's willing to trade! You make the trade, 1 Transformer for 2 GI Joes. Then, Steven catching wind, offers you 3 of his Barbies for your dope Joes. You agree. Great! Finally, Sam, not wanting to
+          be left out, gets in on the action and wants to trade you your Barbs for 2 of his Transformers. Do you agree? OF COURSE, you started the day trading 1 Transformer, only to end it with 2! This is how currency arbitrage works (in a hyper-simplified
+          way).
+        </p>
+
+        <p><em>Let's see it in action!:</em></p>
       </div>
-      <div class="row">
-        <div class="card text-center col-3">
+      <div class="row" id="demoCurrency">
+        <div class="card text-center col-3 mx-auto">
           <div class="card-body">
             <div class="card-title">
               <h3>Currency One:</h3>
             </div>
-            <p class="card-text">$ &#10143;</p>
-            </div>
+            <p class="card-text">USD &#10143; <span id="currOne"></span></p>
+          </div>
         </div>
-        <div class="card text-center col-3">
+        <div class="card text-center col-3 mx-auto">
           <div class="card-body">
             <div class="card-title">
               <h3>Currency Two:</h3>
             </div>
-          <p class="card-text">฿ &#10143;</p>
+            <p class="card-text"><span id="currNameTwo"></span> &#10143; <span id="currTwo"></span></p>
           </div>
         </div>
-        <div class="card text-center col-3">
+        <div class="card text-center col-3 mx-auto">
           <div class="card-body">
             <div class="card-title">
               <h3>Currency Three:</h3>
             </div>
-              <p class="card-text">£ &#10143;</p>
-            </div>
+            <p class="card-text"><span id="currNameThree"></span> &#10143; <span id="currThree"></span></p>
+          </div>
         </div>
-        <div class="card text-center col-3">
+      </div>
+      <div class="row" id="finalDemoCurrency">
+        <div class="card text-center mx-auto">
           <div class="card-body">
             <div class="card-title">
               <h3>Original Currency:</h3>
             </div>
-              <p class ="card-text">$ &#9650;</p>
-            </div>
+            <p class="card-text">USD &#9650; <span id="currFour"></span></p>
+          </div>
         </div>
       </div>
       <button id="runDemo" class="btn btn-success btn-lg btn-block border border-dark">See a demo of an arbitrage opportunity!</button>
       <div id="demoOutput"></div>
     </div>
-    <hr><div class="row">
+    <hr>
+    <div class="row">
       <div class="col-sm">
         <div id="arbCheck">
           <label for="arbBaseCurr">Please pick a currency to check for arbitrage opportunities:</label>
@@ -96,7 +106,8 @@
           <div id="arbOutput"></div>
         </div>
       </div>
-      <hr><div class="col-sm">
+      <hr>
+      <div class="col-sm">
         <div id="convertCurr">
           <div id="currencyList">
           </div>
@@ -115,7 +126,7 @@
           <input type="number" id="convertCurrAmt">
           <br>
           <br>
-          <button id="convertRunCalc">Convert your cash!</button>
+          <button id="convertRunCalc" class="btn btn-success">Convert your cash!</button>
           <div id="convertOutput"><span id="error"></span></div>
         </div>
       </div>
@@ -123,15 +134,31 @@
     <br>
     <div id="aboutUs">
       <h6>About Team Bling:</h6>
-      <p>Jo</p>
-      <p>Jon</p>
-      <p>Micah</p>
-      <p>Olha</p>
-      <p>Scott</p>
+      <div class="row" id="aboutSection">
+        <div class="col-sm">
+          <p>Jo:</p>
+          <img src="img/jo.jpg" class="aboutPics">
+          <p>Jon:</p>
+          <img src="img/jon.jpg" class="aboutPics">
+        </div>
+        <div class="col-sm">
+          <p>Micah:</p>
+          <img src="img/micah.jpg" class="aboutPics">
+          <p>Olha:</p>
+          <img src="img/olha.png" class="aboutPics">
+        </div>
+        <div class="col-sm">
+          <p>Scott:</p>
+          <img src="img/scott.jpg" class="aboutPics">
+          <p>Maxwell:</p>
+          <img src="img/max.jpg" class="aboutPics">
+        </div>
+      </div>
     </div>
     <div id="footer">
-
+      <span id="foot-text">(c) Team Bling 2021</span>
     </div>
   </div>
 </body>
+
 </html>
