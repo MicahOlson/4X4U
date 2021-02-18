@@ -9,6 +9,13 @@ import { demoRates } from './js/demo-rates.js';
 
 
 $(document).ready(function() {
+  function errorCheck(response) {
+    const body = JSON.parse(response);
+    if (body.result === "error") {
+      $("#error").append(`<p>Sorry! We got the following error: ${body['error-type']}</p>`);
+    }
+  }
+
   // Arbitrage
   $('#arbRunCalc').click(function(event) {
     let userCurrency = $('arbBaseCurr').val();
@@ -22,6 +29,7 @@ $(document).ready(function() {
       });
     } else {
       console.log(`Sorry, no arbitrage opportunities found today.`);
+      errorCheck();
     }
   });
 
@@ -48,25 +56,35 @@ $(document).ready(function() {
     $("#convertCurrBase").val("");
     $("#convertCurrTarget").val("");
     $("#convertCurrAmt").val("");
+    $("#error").empty();
   }
-  
+  function valueCheck(amount) {
+    if (amount <= 0) {
+      $("#error").append(`<p>Please enter a valid currency amount.</p>`);
+    }
+  }
+
 
   populateDropdown();
 
-  $('#convertRunCalc').click(function(event) {
+  $('#convert-form').submit(function(event) {
     event.preventDefault();
     const fromCurrency = $('#convertCurrBase').val();
     const toCurrency = $('#convertCurrTarget').val();
     const amount = parseInt($("#convertCurrAmt").val());
     clearFields();
+    valueCheck(amount);
     let promise = Conversion.getConversion(fromCurrency, toCurrency);
     promise.then(function(response) {
       const body = JSON.parse(response);
       if (body.result === "success") {
         const symbol = '&#x' + body.target_data.display_symbol.split(',').join(';&#x') + ';';
         $('#convertOutput').html(`Your total amount is ` + symbol + ` ${(amount * body.conversion_rate).toFixed(2)} converting from ${fromCurrency} to ${toCurrency}`);
-      }}, function(error) {
-      $("#error").append(`<p>Sorry! ${error['error-type']}</p>`);
+      } else {
+        errorCheck(response);
+      }
+    }, function(error) {
+      $("#error").append(`<p>There was an error processing your request: ${error}</p>`);
     });
   });
 });
