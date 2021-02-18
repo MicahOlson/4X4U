@@ -58,11 +58,6 @@ $(document).ready(function() {
     $("#convertCurrAmt").val("");
     $("#error").empty();
   }
-  function valueCheck(amount) {
-    if (amount <= 0) {
-      $("#error").append(`<p>Please enter a valid currency amount.</p>`);
-    }
-  }
 
 
   populateDropdown();
@@ -73,7 +68,6 @@ $(document).ready(function() {
     const toCurrency = $('#convertCurrTarget').val();
     const amount = parseInt($("#convertCurrAmt").val());
     clearFields();
-    valueCheck(amount);
     let promise = Conversion.getConversion(fromCurrency, toCurrency);
     promise.then(function(response) {
       const body = JSON.parse(response);
