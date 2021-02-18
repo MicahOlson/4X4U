@@ -82,7 +82,7 @@ button {
   margin-right: 20%;
   padding: 2em;
   border-radius: 15px;
-  text-shadow: 2px 2px rgb(30, 95, 89);
+  text-shadow: 2px 2px rgb(65, 153, 144);
   background-image: linear-gradient(to bottom right, #4089a7, #264653);
   border: 2px inset teal;
 }
@@ -103,6 +103,20 @@ button {
 #arbCheck,
 #convertCurr {
   text-align: center;
+}
+
+#arbContent,
+#aboutUs,
+#arbCheck,
+#convertCurr {
+  padding: 20px;
+  background-color: rgb(65, 153, 144);
+  border: 2px double #264653;
+  border-radius: 25px;
+}
+
+#arbitrageSpinner, #arbOutput {
+  display: none;
 }
 
 #wiki,

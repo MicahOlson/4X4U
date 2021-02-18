@@ -17,10 +17,10 @@ $(document).ready(function() {
 
 
   // Arbitrage
-  $('#arbRunCalc').click(function(event) {
+  $('#arbitrage-form').submit(function(event) {
     event.preventDefault();
-    let userCurrency = $('arbBaseCurr').val();
-    let userAmount = $('arbCurrAmt').val();
+    let userCurrency = $('#arbBaseCurr').val();
+    let userAmount = $('#arbCurrAmt').val();
     let arbitrageResults = findArbitrage(userCurrency, getExchangeRates());
     if (arbitrageResults.length > 0) {
       const randomResult = arbitrageResults[Math.floor(Math.random() * arbitrageResults.length)];
@@ -38,8 +38,18 @@ $(document).ready(function() {
       $('#currNameThree').text(curr3Name);
       $('#currThree').text(curr3Val);
       $('#currFour').text(curr4Val);
+      $('#runDemo').hide();
+      $('#arbOutput').hide();
+      $('#arbOutput').text(`Congratulations—you've found an arbitrage opportunity! See the tiles above for the currency exchange you can make to exploit the market.`);
+      clearFields();
+      $("#arbitrageSpinner").show().delay(2500).fadeOut();
+      setTimeout(function() { $("#arbOutput").show(); }, 3000);
     } else {
+      clearFields();
+      $('#arbOutput').hide();
       $('#arbOutput').text(`Sorry, no arbitrage opportunities found today.`);
+      $("#arbitrageSpinner").show().delay(2500).fadeOut();
+      setTimeout(function() { $("#arbOutput").show(); }, 3000);
     }
   });
 
@@ -62,14 +72,13 @@ $(document).ready(function() {
     $('#currNameThree').text(curr3Name);
     $('#currThree').text(curr3Val);
     $('#currFour').text(curr4Val);
-    $('#demoOutput').html('<img style="height:100%" id="moneymoneymoney" src="https://64.media.tumblr.com/763175ae4f21757ec3f9a5f61047101b/tumblr_opkdjuZbAj1tkodheo5_400.gif" />')
+    $('#demoOutput').html('<img style="height:100%" id="moneymoneymoney" src="https://64.media.tumblr.com/763175ae4f21757ec3f9a5f61047101b/tumblr_opkdjuZbAj1tkodheo5_400.gif" />');
   });
 
   // Conversion calculator
   function populateDropdown() {
     for (const key in selectCurrencies()) {
-      $("#convertCurrBase").append(`<option value="${key}">${key} - ${selectCurrencies()[key][0]}</option>`);
-      $("#convertCurrTarget").append(`<option value="${key}">${key} - ${selectCurrencies()[key][0]}</option>`);
+      $(".dropdown").append(`<option value="${key}">${key} - ${selectCurrencies()[key][0]}</option>`);
     }
   }
 
@@ -77,6 +86,8 @@ $(document).ready(function() {
     $("#convertCurrBase").val("");
     $("#convertCurrTarget").val("");
     $("#convertCurrAmt").val("");
+    $('#arbBaseCurr').val("");
+    $('#arbCurrAmt').val("");
     $("#error").empty();
   }
 
