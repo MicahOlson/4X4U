@@ -5,8 +5,15 @@ body {
   background-color: #264653;
 }
 
-input, select {
+input,
+select {
   background-color: rgb(91, 177, 177);
+  margin: 0 auto;
+}
+
+#convertCurr input, 
+#convertCurr select {
+  display: block;
 }
 
 #moneyBG {
@@ -15,15 +22,18 @@ input, select {
   background-size: cover;
   position: fixed;
   z-index: -1;
-  filter:opacity(30%) grayscale(120%) blur(8px);
-  background-blend-mode:soft-light;
+  filter: opacity(30%) grayscale(120%) blur(8px);
+  background-blend-mode: soft-light;
 }
 
 button {
   background-color: #264653 !important;
   color: rgb(255, 238, 0) !important;
-  margin-bottom: 50px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
+
 
 .aboutPics {
   height: 175px;
@@ -35,12 +45,13 @@ button {
 }
 
 #aboutUs {
+  margin: 20%;
   padding-top: 100px;
   text-align: center;
 }
 
 #aboutUs h6 {
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 #nav {
@@ -100,7 +111,7 @@ button {
 #aboutUs,
 #arbCheck,
 #convertCurr {
-  padding: 20px;
+  padding: 60px;
   background-color: rgb(65, 153, 144);
   border: 2px double #264653;
   border-radius: 25px;
@@ -113,9 +124,8 @@ button {
 #wiki,
 #arbCheck,
 #convertCurr,
-#aboutUs,
-#arbRunCalc {
-  margin-top: 60px;
+#aboutUs {
+   padding-top: 100px; 
 }
 
 #runDemo {
@@ -124,14 +134,13 @@ button {
   margin-left: auto;
   margin-right: auto;
   width: 20%;
-  border: aliceblue 3px !important;
+  /* border: aliceblue 3px !important; */
 }
 
 #demoOutput {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-
 
 .card {
   height: fit-content;
@@ -172,4 +181,25 @@ justify-content: center;
   position: fixed;
   bottom: 0;
   left: 0;
+}
+
+#convertOutput,
+#error {
+  margin-top: 30px;
+}
+
+#arbOutput {
+  margin-top: 100px;
+}
+
+h2 {
+  color: #F4A261;
+}
+
+#arbBaseCurr,
+#arbCurrentAmt,
+#arbOutput {
+  margin-top: 20px;
+  color: #F4A261;
+  font-size: medium;
 }

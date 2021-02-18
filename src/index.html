@@ -2,6 +2,7 @@
 <html lang="en-US">
 
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
   <title>4X4U</title>
 </head>
 
@@ -15,7 +16,7 @@
     <div id="nav">
       <nav class="navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Back To Top</a>
+          <a class="navbar-brand" href="#">Back to Top</a>
           <ul class="nav justify-content-center">
             <li class="nav-item"><a href="#wiki">What IS Arbitrage?</a></li>
             <li class="nav-item"><a href="#arbCheck">Check for Arbitrage!</a></li>
@@ -42,9 +43,66 @@
           be left out, gets in on the action and wants to trade you your Barbs for 2 of his Transformers. Do you agree? OF COURSE, you started the day trading 1 Transformer, only to end it with 2! This is how currency arbitrage works (in a hyper-simplified
           way).
         </p>
-
-        <p><em>Let's see it in action!:</em></p>
       </div>
+      
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm">
+        <div id="convertCurr">
+          <h2>Currency Convertor</h2>
+          <form id="convert-form">
+            <div id="currencyList">
+            </div>
+            <label for="convertCurrBase">Please select a currency to convert FROM:</label>
+            <select class="dropdown" id="convertCurrBase" name="convertCurrBase" required>
+              <option selected disabled value="">- Select currency -</option>
+            </select>
+            <label for="convertCurrTarget">Please select a currency to convert TO:</label>
+            <select class="dropdown" id="convertCurrTarget" name="convertCurrTarget" required>
+              <option selected disabled value="">- Select currency -</option>
+            </select>
+            <input placeholder="Enter an amount" type="number" id="convertCurrAmt" step=".01" min=".01" required>
+            <br>
+            <br>
+            <button id="convertRunCalc" class="btn btn-success">Convert your cash!</button>
+            <div id="convertOutput"><span id="error"></span></div>
+          </form>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div id="arbCheck">
+          <h2>Arbitrage Calculator</h2>
+          <form id="arbitrage-form">
+            <label for="arbBaseCurr">Please pick a currency to check for arbitrage opportunities:</label>
+            <select class="form-select" name="arbBaseCurr" id="arbBaseCurr" required>
+              <option selected disabled value="">- Select currency -</option>
+              <option value="USD">USD - United States Dollar</option>
+              <option value="EUR">EUR - Euro</option>
+              <option value="JPY">JPY - Japanese Yen</option>
+              <option value="GBP">GBP - Pound Sterling</option>
+              <option value="AUD">AUD - Australian Dollar</option>
+              <option value="CAD">CAD - Canadian Dollar</option>
+              <option value="CHF">CHF - Swiss Franc</option>
+              <option value="CNY">CNY - Chinese Renminbi</option>
+              <option value="SEK">SEK - Swedish Krona</option>
+              <option value="NZD">NZD - New Zealand Dollar</option>
+            </select>
+            <input type="number" id="arbCurrAmt" placeholder="Enter an amount" required>
+            <button id="arbRunCalc" class="btn btn-success">Look for arbitrage!</button>
+            <div id="arbOutput"></div>
+              <div class="text-center" id="arbitrageSpinner">
+                <div class="spinner-border text-light" role="status">
+                  <span class="sr-only">Scanning Forex...</span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div id="demo">
       <div class="row" id="demoCurrency">
         <div class="card text-center col-3 mx-auto">
           <div class="card-body">
@@ -81,66 +139,9 @@
           </div>
         </div>
       </div>
-      <button id="runDemo" class="btn btn-success btn-lg btn-block border border-dark">See a demo of an arbitrage opportunity!</button>
+      <button id="runDemo" class="btn btn-success btn-lg btn-block">See a demo of an arbitrage opportunity!</button>
       <div id="demoOutput"></div>
     </div>
-    <hr>
-    <div class="row">
-      <div class="col-sm">
-        <div id="arbCheck">
-          <form id="arbitrage-form">
-            <label for="arbBaseCurr">Please pick a currency to check for arbitrage opportunities:</label>
-            <select class="form-select" name="arbBaseCurr" id="arbBaseCurr" required>
-              <option selected disabled value="">- Select currency -</option>
-              <option value="USD">USD - United States Dollar</option>
-              <option value="EUR">EUR - Euro</option>
-              <option value="JPY">JPY - Japanese Yen</option>
-              <option value="GBP">GBP - Pound Sterling</option>
-              <option value="AUD">AUD - Australian Dollar</option>
-              <option value="CAD">CAD - Canadian Dollar</option>
-              <option value="CHF">CHF - Swiss Franc</option>
-              <option value="CNY">CNY - Chinese Renminbi</option>
-              <option value="SEK">SEK - Swedish Krona</option>
-              <option value="NZD">NZD - New Zealand Dollar</option>
-            </select>
-            <input type="number" id="arbCurrAmt" placeholder="Enter an amount" required>
-            <br>
-            <button id="arbRunCalc" class="btn btn-success">Look for arbitrage!</button>
-            <div id="arbOutput"></div>
-              <div class="text-center" id="arbitrageSpinner">
-                <div class="spinner-border text-light" role="status">
-                  <span class="sr-only">Scanning Forex...</span>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="col-sm">
-        <div id="convertCurr">
-          <form id="convert-form">
-            <div id="currencyList">
-            </div>
-            <label for="convertCurrBase">Please select a currency to convert FROM:</label>
-            <select class="dropdown" id="convertCurrBase" name="convertCurrBase" required>
-              <option selected disabled value="">- Select currency -</option>
-            </select>
-            <br>
-            <label for="convertCurrTarget">Please select a currency to convert TO:</label>
-            <select class="dropdown" id="convertCurrTarget" name="convertCurrTarget" required>
-              <option selected disabled value="">- Select currency -</option>
-            </select>
-            <input placeholder="Enter an amount" type="number" id="convertCurrAmt" step=".01" min=".01" required>
-            <br>
-            <br>
-            <button id="convertRunCalc">Convert your cash!</button>
-            <div id="convertOutput"><span id="error"></span></div>
-          </form>  
-        </div>
-      </div>
-    </div>
-    <br>
     <div id="aboutUs">
       <h6>About Team Bling:</h6>
       <div class="row" id="aboutSection">
