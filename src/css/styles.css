@@ -1,11 +1,26 @@
 body {
-  margin-top: 50px;
+  padding-top: 50px;
   margin-bottom: 600px;
   color: aliceblue;
   background-color: #264653;
 }
 
+input, select {
+  background-color: rgb(91, 177, 177);
+}
+
+#moneyBG {
+  top: -60px;
+  overflow: hidden;
+  background-size: cover;
+  position: fixed;
+  z-index: -1;
+  filter:opacity(30%) grayscale(120%) blur(8px);
+  background-blend-mode:soft-light;
+}
+
 button {
+  background-color: #264653 !important;
   color: rgb(255, 238, 0) !important;
 }
 
@@ -19,7 +34,12 @@ button {
 }
 
 #aboutUs {
+  padding-top: 100px;
   text-align: center;
+}
+
+#aboutUs h6 {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 #nav {
@@ -28,13 +48,13 @@ button {
   position: sticky;
   top: 0;
   z-index: 1;
-  margin-bottom: 60px;
 }
 
 .navbar {
   color: aliceblue;
   background-color: #2A9D8F;
   border: white inset 4px;
+  margin-bottom: 60px;
 }
 
 .navbar-brand {
@@ -42,9 +62,23 @@ button {
 }
 
 #header {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-align: center;
+  font-size: xx-large !important;
   font-weight: bolder;
   margin-bottom: 30px;
+  background-color: #264653;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: 2em;
+  border-radius: 15px;
+  text-shadow: 2px 2px rgb(30, 95, 89);
+  background-image: linear-gradient(to bottom right, #4089a7, #264653);
+  border: 2px inset teal;
+}
+
+#header h1 {
+  font-size: 125px;
 }
 
 .nav-item {
@@ -77,6 +111,12 @@ button {
   width: 20%;
   border: aliceblue 3px !important;
 }
+
+#demoOutput {
+display: flex;
+justify-content: center;
+}
+
 
 .card {
   height: fit-content;

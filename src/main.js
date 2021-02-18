@@ -55,7 +55,7 @@ $(document).ready(function() {
     $('#currNameThree').text(curr3Name);
     $('#currThree').text(curr3Val);
     $('#currFour').text(curr4Val);
-    $('#demoOutput').html('<img id="moneymoneymoney" src="https://64.media.tumblr.com/763175ae4f21757ec3f9a5f61047101b/tumblr_opkdjuZbAj1tkodheo5_400.gif" />')
+    $('#demoOutput').html('<img style="height:100%" id="moneymoneymoney" src="https://64.media.tumblr.com/763175ae4f21757ec3f9a5f61047101b/tumblr_opkdjuZbAj1tkodheo5_400.gif" />')
   });
 
   // Conversion calculator
