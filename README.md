@@ -42,7 +42,8 @@ Initial Specs:
 | Choose starting currency and enter amount for arbitrage | USD , 1 | USD > AED > JPY > USD 1.25 OR Sorry, there is not an opportunity for arbitrage |
 | Allow user to select and convert a currency | AED , JPY , 2 | Your total amount is ¥ 57.69 converting from AED to JPY |
 | Receive error if API returns one | Error | You have received an error: Invalid API Key |
-| Receive message if currency doesn't exist | KPW |  |
+| Receive message if user try to submit empty form | blank fields |  Please select an item in the list |
+| Receive message if user input amount is less than 0 | -1 | Value must be greater than or equal to 0.01 |
 
 </details>
 
