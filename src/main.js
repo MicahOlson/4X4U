@@ -7,7 +7,6 @@ import { selectCurrencies } from './js/currency-list.js';
 import { findArbitrage , getExchangeRates } from './js/arbitrage.js';
 import { demoRates } from './js/demo-rates.js';
 
-
 $(document).ready(function() {
   function errorCheck(response) {
     const body = JSON.parse(response);
@@ -15,6 +14,7 @@ $(document).ready(function() {
       $("#error").append(`<p>Sorry! We got the following error: ${body['error-type']}</p>`);
     }
   }
+
 
   // Arbitrage
   $('#arbRunCalc').click(function(event) {
