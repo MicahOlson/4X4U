@@ -1,29 +1,23 @@
 import Arbitrage from '../services/standard-exchange-api.js';
 
-// Top ten currencies traded on forex market
 const currencies = [
-  'USD', 'EUR', 'JPY', 'GBP', 'AUD',
-  'CAD', 'CHF', 'CNY', 'SEK', 'NZD'
+  'AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 
+  'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 
+  'BSD', 'BTN', 'BWP', 'BYN', 'BZD', 'CAD', 'CDF', 'CHF', 'CLP', 'CNY', 
+  'COP', 'CRC', 'CUC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 
+  'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'FOK', 'GBP', 'GEL', 'GGP', 
+  'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 
+  'HUF', 'IDR', 'ILS', 'IMP', 'INR', 'IQD', 'IRR', 'ISK', 'JMD', 'JOD', 
+  'JPY', 'KES', 'KGS', 'KHR', 'KID', 'KMF', 'KRW', 'KWD', 'KYD', 'KZT', 
+  'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 
+  'MMK', 'MNT', 'MOP', 'MRU', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZN', 
+  'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 
+  'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 
+  'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'SSP', 
+  'STN', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 
+  'TVD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VES', 'VND', 
+  'VUV', 'WST', 'XAF', 'XCD', 'XDR', 'XOF', 'XPF', 'YER', 'ZAR', 'ZMW'
 ];
-// All available currencies
-// const currencies = [
-//   'AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 
-//   'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 
-//   'BSD', 'BTN', 'BWP', 'BYN', 'BZD', 'CAD', 'CDF', 'CHF', 'CLP', 'CNY', 
-//   'COP', 'CRC', 'CUC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 
-//   'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'FOK', 'GBP', 'GEL', 'GGP', 
-//   'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 
-//   'HUF', 'IDR', 'ILS', 'IMP', 'INR', 'IQD', 'IRR', 'ISK', 'JMD', 'JOD', 
-//   'JPY', 'KES', 'KGS', 'KHR', 'KID', 'KMF', 'KRW', 'KWD', 'KYD', 'KZT', 
-//   'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 
-//   'MMK', 'MNT', 'MOP', 'MRU', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZN', 
-//   'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 
-//   'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 
-//   'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'SSP', 
-//   'STN', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 
-//   'TVD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VES', 'VND', 
-//   'VUV', 'WST', 'XAF', 'XCD', 'XDR', 'XOF', 'XPF', 'YER', 'ZAR', 'ZMW'
-// ];
 
 export function getExchangeRates() {
   let rates = {};
@@ -49,44 +43,23 @@ export function getExchangeRates() {
 }
 
 export function findArbitrage(baseCurrency, exchangeRates) {
-  let firstExchange = {};
-  for (const base in exchangeRates) {
-    for (const firstTarget in exchangeRates[base]) {
-      firstExchange[`1->${base}->${exchangeRates[base][firstTarget]}->${firstTarget}`] = exchangeRates[base][firstTarget];
+  let arbitrage = [];
+  for (const target1 in exchangeRates[baseCurrency]) {
+    for (const target2 in exchangeRates[target1]) {
+      if (target2 != baseCurrency) {
+        const rateBaseToTarget1 = exchangeRates[baseCurrency][target1];
+        const rateTarget1ToTarget2 = exchangeRates[target1][target2];
+        const rateTarget2ToBase = exchangeRates[target2][baseCurrency];
+        if ((rateBaseToTarget1 * rateTarget1ToTarget2 * rateTarget2ToBase) > 1.01) {
+          arbitrage.push([
+            1, baseCurrency, 
+            rateBaseToTarget1, target1, 
+            (rateBaseToTarget1 * rateTarget1ToTarget2), target2, 
+            (rateBaseToTarget1 * rateTarget1ToTarget2 * rateTarget2ToBase), baseCurrency
+          ])
+        }
+      }
     }
   }
-
-  let secondExchange = {};
-  for (const key in firstExchange) {
-    const exchanges = key.split('->');
-    for (const secondTarget in exchangeRates[exchanges[3]]) {
-      secondExchange[`${key}->${firstExchange[key] * exchangeRates[exchanges[3]][secondTarget]}->${secondTarget}`] = firstExchange[key] * exchangeRates[exchanges[3]][secondTarget];
-    }
-  }
-
-  let thirdExchange = {};
-  for (const key in secondExchange) {
-    const exchanges = key.split('->');
-    for (const thirdTarget in exchangeRates[exchanges[5]]) {
-      thirdExchange[`${key}->${secondExchange[key] * exchangeRates[exchanges[5]][thirdTarget]}->${thirdTarget}`] = secondExchange[key] * exchangeRates[exchanges[5]][thirdTarget];
-    }
-  }
-
-  const baseCurr = baseCurrency;
-  let cycles = {};
-  for (const cycle in thirdExchange) {
-    const exchanges = cycle.split('->');
-    if (exchanges[1] === baseCurr && exchanges[7] === baseCurr) {
-      cycles[cycle] = thirdExchange[cycle];
-    }
-  }
-
-  let arbitrageResults = [];
-  for (const cycle in cycles) {
-    if (cycles[cycle] > 1.01) {
-      arbitrageResults.push(`${cycle}: ${cycles[cycle]}`);
-    }
-  }
-
-  return arbitrageResults; // returns an array of arbitrage opportunities
+  return arbitrage;
 }

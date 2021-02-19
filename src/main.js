@@ -29,6 +29,35 @@ function celebrate() {
   }, 250);
 }
 
+function displayArbitrage(arbitrageResults, amount) {
+  let maxReturn = 0;
+  let bestResult;
+  arbitrageResults.forEach(function(result) {
+    if (result[6] > maxReturn) {
+      maxReturn = result[6];
+      bestResult = result;
+    }
+  })
+  const baseName = bestResult[1];
+  const baseVal = (bestResult[0] * amount).toFixed(2);
+  const target1Name = bestResult[3];
+  const exchange1Val = (bestResult[2] * amount).toFixed(2);
+  const target2Name = bestResult[5];
+  const exchange2Val = (bestResult[4] * amount).toFixed(2);
+  const baseNameReturn = bestResult[7];
+  const exchange3Val = (bestResult[6] * amount).toFixed(2);
+  $('#baseName').text(baseName);
+  $('#baseVal').text(baseVal);
+  $('#target1Name').text(target1Name);
+  $('#exchange1Val').text(exchange1Val);
+  $('#target2Name').text(target2Name);
+  $('#exchange2Val').text(exchange2Val);
+  $('#baseNameReturn').text(baseNameReturn);
+  $('#exchange3Val').text(exchange3Val);
+  $('#arbOutput').hide();
+  $('#arbOutput').text(`Congratulations—you've found ${arbitrageResults.length} arbitrage opportunities with ${baseName}! The cycle with your best return is below.`);
+}
+
 $(document).ready(function() {
   function errorCheck(response) {
     const body = JSON.parse(response);
@@ -37,37 +66,23 @@ $(document).ready(function() {
     }
   }
 
-
   // Arbitrage
   $('#arbitrage-form').submit(function(event) {
     event.preventDefault();
-    let userCurrency = $('#arbBaseCurr').val();
-    let userAmount = $('#arbCurrAmt').val();
-    let arbitrageResults = findArbitrage(userCurrency, getExchangeRates());
+    const userCurrency = $('#arbBaseCurr').val();
+    const userAmount = $('#arbCurrAmt').val();
+    const exchangeRates = getExchangeRates();
+    console.log(exchangeRates);
+    const arbitrageResults = findArbitrage(userCurrency, exchangeRates);
+    clearFields();
     if (arbitrageResults.length > 0) {
-      const randomResult = arbitrageResults[Math.floor(Math.random() * arbitrageResults.length)];
-      const splitResult = randomResult.split('->');
-      // const curr1Name = splitResult[1];
-      const curr1Val = (parseFloat(splitResult[0]) * userAmount).toFixed(2);
-      const curr2Name = splitResult[3];
-      const curr2Val = (parseFloat(splitResult[2]) * userAmount).toFixed(2);
-      const curr3Name = splitResult[5];
-      const curr3Val = (parseFloat(splitResult[4]) * userAmount).toFixed(2);
-      const curr4Val = (parseFloat(splitResult[6]) * userAmount).toFixed(2);
-      $('#currOne').text(curr1Val);
-      $('#currNameTwo').text(curr2Name);
-      $('#currTwo').text(curr2Val);
-      $('#currNameThree').text(curr3Name);
-      $('#currThree').text(curr3Val);
-      $('#currFour').text(curr4Val);
-      $('#runDemo').hide();
-      $('#arbOutput').hide();
-      $('#arbOutput').text(`Congratulations—you've found an arbitrage opportunity! See the tiles above for the currency exchange you can make to exploit the market.`);
-      clearFields();
       $("#arbitrageSpinner").show().delay(2500).fadeOut();
+      $('#runDemo').hide();
+      setTimeout(function() {displayArbitrage(arbitrageResults, userAmount); }, 3000);
       setTimeout(function() { $("#arbOutput").show(); }, 3000);
+      setTimeout(function() {$('#demoOutput').html('<img style="height:100%" id="moneymoneymoney" src="https://64.media.tumblr.com/763175ae4f21757ec3f9a5f61047101b/tumblr_opkdjuZbAj1tkodheo5_400.gif" />'); }, 3000);
+      setTimeout(function() {celebrate(); }, 3000);
     } else {
-      clearFields();
       $('#arbOutput').hide();
       $('#arbOutput').text(`Sorry, no arbitrage opportunities found today.`);
       $("#arbitrageSpinner").show().delay(2500).fadeOut();
@@ -79,23 +94,10 @@ $(document).ready(function() {
     celebrate();
     event.preventDefault();
     const userCurrency = "USD";
+    const userAmount = 1000;
     const arbitrageResults = findArbitrage(userCurrency, demoRates);
-    const randomResult = arbitrageResults[Math.floor(Math.random() * arbitrageResults.length)];
-    const splitResult = randomResult.split('->');
-    // const curr1Name = splitResult[1];
-    const curr1Val = (parseFloat(splitResult[0]) * 1000).toFixed(2);
-    const curr2Name = splitResult[3];
-    const curr2Val = (parseFloat(splitResult[2]) * 1000).toFixed(2);
-    const curr3Name = splitResult[5];
-    const curr3Val = (parseFloat(splitResult[4]) * 1000).toFixed(2);
-    const curr4Val = (parseFloat(splitResult[6]) * 1000).toFixed(2);
-    $('#currOne').text(curr1Val);
-    $('#currNameTwo').text(curr2Name);
-    $('#currTwo').text(curr2Val);
-    $('#currNameThree').text(curr3Name);
-    $('#currThree').text(curr3Val);
-    $('#currFour').text(curr4Val);
-    $('#demoOutput').html('<img style="height:100%" id="moneymoneymoney" src="https://64.media.tumblr.com/763175ae4f21757ec3f9a5f61047101b/tumblr_opkdjuZbAj1tkodheo5_400.gif" />');
+    const randomResult = [arbitrageResults[Math.floor(Math.random() * arbitrageResults.length)]];
+    displayArbitrage(randomResult, userAmount);
   });
 
   // Conversion calculator
@@ -113,7 +115,6 @@ $(document).ready(function() {
     $('#arbCurrAmt').val("");
     $("#error").empty();
   }
-
 
   populateDropdown();
 
