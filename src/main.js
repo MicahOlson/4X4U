@@ -72,7 +72,6 @@ $(document).ready(function() {
     const userCurrency = $('#arbBaseCurr').val();
     const userAmount = $('#arbCurrAmt').val();
     const exchangeRates = getExchangeRates();
-    console.log(exchangeRates);
     const arbitrageResults = findArbitrage(userCurrency, exchangeRates);
     clearFields();
     if (arbitrageResults.length > 0) {
