@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
+import confetti from 'canvas-confetti';
 import Conversion from './services/pair-exchange-api.js';
 import { selectCurrencies } from './js/currency-list.js';
 import { findArbitrage, getExchangeRates } from './js/arbitrage.js';
@@ -37,7 +38,7 @@ function displayArbitrage(arbitrageResults, amount) {
       maxReturn = result[6];
       bestResult = result;
     }
-  })
+  });
   const baseName = bestResult[1];
   const baseVal = (bestResult[0] * amount).toFixed(2);
   const target1Name = bestResult[3];
