@@ -14,17 +14,17 @@
 ![Homepage](src/images/screenshot.png)
 
 ## Technologies Used
+* npm
+* webpack
 * HTML
 * CSS
+* Bootstrap
 * JavaScript
-* Bootstrap 4.6
-* jQuery 3.5.1
-* Node.js 14.15.5
-* npm 6.14.10
-* webpack 4.39.3
-* ESLint 6.3.1
-* Markdown 1.0.1
+* jQuery
 * ExchangeRate-API
+* ESLint
+* Markdown
+* git
 
 ## Description
 Using this application, a user can check for Arbitrage opportunities by selecting the base currency (from a list of top ten world currencies), and choosing an amount. They will then be shown whether or not an opportunity for Arbitrage exists for that currency at the time. If so, an affirmative message will be displayed. The user will also be able to use the currency exchange converter to enter an amount in any world currency, and then convert it into any other world currency. To determine the most recent exchange rate, this application will make an API call to the following [exchange rate API](https://www.exchangerate-api.com/). The correct conversion information will then be displayed!
@@ -104,19 +104,12 @@ Initial Specs:
 * If you find a bug, please report it to me at the email address below.  
 
 ## License
-[GPLv3](https://choosealicense.com/licenses/gpl-3.0/)  
-Copyright &copy; 2021  
-    Olha Hizhytska  
-    Maxwell Meyer  
-    Jo Miller  
-    Scott O'Neil  
-    Micah L. Olson  
-    Jon Stump  
+[MIT](LICENSE) - Copyright &copy; 2021 Olha Hizhytska, Maxwell Meyer, Jo Miller, Scott O'Neil, Micah L. Olson, Jon Stump
 
 ## Contact Information
-Micah Olson micah.olson@protonmail.com
-Jon Stump jmstump@gmail.com 
-Maxwell Meyer maxreadswell@gmail.com 
-Jo Miller joannadawnmiller@gmail.com
-Scott O'Neil scottieoneil@gmail.com
-Olha Hizhytska olgainfotech@gmail.com
+Olha Hizhytska olgainfotech@gmail.com  
+Maxwell Meyer maxreadswell@gmail.com  
+Jo Miller joannadawnmiller@gmail.com  
+Scott O'Neil scottieoneil@gmail.com  
+Micah Olson micah.olson@protonmail.com  
+Jon Stump jmstump@gmail.com
