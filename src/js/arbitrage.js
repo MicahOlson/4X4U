@@ -56,7 +56,7 @@ export function findArbitrage(baseCurrency, exchangeRates) {
             rateBaseToTarget1, target1, 
             (rateBaseToTarget1 * rateTarget1ToTarget2), target2, 
             (rateBaseToTarget1 * rateTarget1ToTarget2 * rateTarget2ToBase), baseCurrency
-          ])
+          ]);
         }
       }
     }
